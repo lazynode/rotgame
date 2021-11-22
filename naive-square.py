@@ -89,9 +89,20 @@ if __name__ == '__main__':
     game = G()
     print('''GAME START''')
     while game.win() == False:
+
+        game.list_nodes()
+
         action = input('cmd (type `get_help()` to see all) >>> ')
         try:
-            exec(action, {}, game.cmd)
+            node = eval(action, {}, game.cmd)
+            if node is not None:
+                game.action(node)
         except:
+            print()
             print('ERROR!!!')
+            print()
+            if action in game.cmd:
+                print('''maybe you should type `{}(...)`'''.format(action))
+                print('''`...` is the args''')
+                print()
     print('''YOU WIN!!!''')
