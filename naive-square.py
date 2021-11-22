@@ -55,6 +55,7 @@ class G(Game):
         where `NODE` is the node you want to rotate;
         '''
         self.action(node)
+        self.list_nodes()
 
     def get_help(self, cmd=None):
         '''
@@ -88,10 +89,10 @@ class G(Game):
 if __name__ == '__main__':
     game = G()
     print('''GAME START''')
+
+    game.list_nodes()
+
     while game.win() == False:
-
-        game.list_nodes()
-
         action = input('cmd (type `get_help()` to see all) >>> ')
         try:
             node = eval(action, {}, game.cmd)
@@ -105,4 +106,5 @@ if __name__ == '__main__':
                 print('''maybe you should type `{}(...)`'''.format(action))
                 print('''`...` is the args''')
                 print()
+
     print('''YOU WIN!!!''')
